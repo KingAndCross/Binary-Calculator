@@ -100,6 +100,7 @@
 
 .calculator-container .input-visual {
   grid-column: 1 / 5;
+  margin-bottom: 30px;
   grid-row: 1;
   display: grid;
   place-items: center;
@@ -185,7 +186,7 @@
 }
 
 .main:has(.modo.button-group #register:checked) {
-  grid-template-columns: 20% 1fr;
+  grid-template-columns: 25% 1fr;
   grid-template-rows: 1fr;
   place-content: center;
 }
@@ -195,6 +196,7 @@
   grid-column: 2;
   grid-row: 1;
   justify-self: auto;
+  grid-template-rows: 1fr 1fr;
 }
 
 .main:has(.modo.button-group #register:checked) .options-container {
@@ -207,7 +209,7 @@
 .main:has(.modo.button-group #register:checked) .textview {
   width: 100%;
   height: auto;
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 
 .main:has(.modo.button-group #register:checked) .calculator-container .button {
