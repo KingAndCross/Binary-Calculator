@@ -2,8 +2,23 @@ let operations = "";
 const res = document.getElementById("res");
 const visual = document.getElementById("visual");
 const overflowIndicator = document.getElementById("overflow");
+const fullscreenButton = document.getElementById("fullscreen-button");
 
 let bitLength = 8;
+
+fullscreenButton.addEventListener("click", toggleFullscreen);
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch((err) => {
+      alert(`Error attempting to enable full-screen mode: ${err.message}`);
+    });
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
 
 document.getElementById("bit-size").addEventListener("click", function (e) {
   if (e.target.tagName === "INPUT" && e.target.type === "radio") {

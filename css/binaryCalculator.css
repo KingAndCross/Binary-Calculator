@@ -153,6 +153,21 @@
   color: black;
 }
 
+.button.fullscreen-button {
+  position: absolute;
+  right: 40px;
+  top: 30px;
+  height: 60px;
+  width: 60px;
+  padding: 10px;
+  border: none;
+}
+
+.button.fullscreen-button:hover {
+  background-color: black;
+  color: lime;
+}
+
 /* ========================================================== */
 /* REGISTER MODE */
 /* ========================================================== */

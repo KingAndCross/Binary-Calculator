@@ -12,7 +12,8 @@
 
 body {
   user-select: none;
-  overflow: hidden; /* Hide overflow for perspective effect */
+  height: 100lvh;
+  overflow: hidden;
 }
 
 .main {
