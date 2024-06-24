@@ -12,7 +12,7 @@
   display: grid;
   align-items: center;
   width: 100lvw;
-  height: 100lvh;
+  height: 100%;
   grid-template-rows: 20% 1fr;
   grid-template-columns: 1fr 1fr;
   gap: 5%;
@@ -209,7 +209,7 @@
 .main:has(.modo.button-group #register:checked) .textview {
   width: 100%;
   height: auto;
-  font-size: 3.7rem;
+  font-size: 3.5rem;
 }
 
 .main:has(.modo.button-group #register:checked) .calculator-container .button {
