@@ -8,6 +8,7 @@
 }
 
 .main {
+  position: relative;
   display: grid;
   align-items: center;
   width: 100lvw;
@@ -154,7 +155,7 @@
 }
 
 .button.fullscreen-button {
-  position: absolute;
+  position: absolute !important;
   right: 40px;
   top: 30px;
   height: 60px;
