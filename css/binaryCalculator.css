@@ -209,7 +209,7 @@
 .main:has(.modo.button-group #register:checked) .textview {
   width: 100%;
   height: auto;
-  font-size: 4rem;
+  font-size: 3.7rem;
 }
 
 .main:has(.modo.button-group #register:checked) .calculator-container .button {
