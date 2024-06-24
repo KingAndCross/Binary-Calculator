@@ -1,84 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operaciones Binarias</title>
+    <link rel="stylesheet" href="css/terminalStyling.css"/>
+    <link rel="stylesheet" href="css/binaryCalculator.css"/>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binary Calculator</title>
-
-    <link rel="stylesheet" href="css/binaryCalculator.css" id="theme1">
-    <link rel="stylesheet" href="css/darktheme.css" id="theme2" disabled>
-</head>
-
-<body>
+  <body>
+    <div class="overlay"></div>
     <div class="bg"></div>
     <div class="main">
-        <h1 class="title">Binary Calculator</h1>
-        <form name="form">
+        <p class="decorative-text">Algoritmos UOH - 2024..*/ </p>
+        <div class="result-container">
             <div class="input-container">
-                <input id="res" type="text" class="textview" name="textview">
-                <!-- <span class="cursor"></span> -->
-            </div>
-        </form>
-        <table>
-            <tr>
-                <td><input class="button" type="button" value="M+" onclick="addToMemory()"></td>
-                <td><input class="button" type="button" value="C" onclick="clc()"></td>
-                <td><input class="button" type="button" value="⌫" onclick="backspace()"></td>
-                <td><input class="button" type="button" value="/" onclick="insert('/')"></td>
-            </tr>
-            <tr>
-                <td><input class="button" type="button" value="M-" onclick="subtractFromMemory()"></td>
-                <td><input class="button" type="button" value="0" onclick="insert(0)"></td>
-                <td><input class="button" type="button" value="1" onclick="insert(1)"></td>
-                <td><input class="button" type="button" value="*" onclick="insert('*')"></td>
-
-            </tr>
-            <tr>
-                <td><input class="button" type="button" value="MR" onclick="recallMemory()"></td>
-                <td><input class="button" type="button" value="1's" onclick="oneComplement()"></td>
-                <td><input class="button" type="button" value="2's" onclick="twoComplement()"></td>
-                <td><input class="button" type="button" value="-" onclick="insert('-')"></td>
-            </tr>
-            <tr>
-                <td><input class="button" type="button" value="MC" onclick="clearMemory()"></td>
-                <td><input class="button" type="button" value=">>" onclick="insert('>')"></td>
-                <td><input class="button" type="button" value="<<" onclick="insert('<')"></td>
-                <td><input class="button" type="button" value="+" onclick="insert('+')"></td>
-                
-            </tr>
-            <tr>
-                <td><input class="button" type="button" value="." onclick="decimal()"></td>
-                <td><input class="button" type="button" value="Octal" onclick="binaryToOctal()"></td>
-                <td><input id="eql" class="button" type="button" value="=" onclick="eql()"></td>
-                <td>
-                    <div id="toggle-theme-button" class="theme-container shadow-dark">
-                        <img id="theme-icon "
-                            src="https://www.uplooder.net/img/image/2/addf703a24a12d030968858e0879b11e/moon.svg"
-                            alt="ERR">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><input class="button" type="button" value="Hex" onclick="binaryToHexadecimal()"></td>
-                <td><input class="button" type="button" value="Dec" onclick="binaryToDecimal()"></td>
-                <td><input class="button" type="button" value="ROR" onclick="circularShift('right')"></td>
-                <td><input class="button" type="button" value="ROL" onclick="circularShift('left')"></td>
-
-            </tr>
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <p id="modalResult"></p>
-                </div>
-            </div>
-        </table>
-    </div>
-    <div class="name">
-        Made with ❤
+                <input
+                  disabled
+                  id="res"
+                  type="text"
+                  class="textview"
+                  name="textview"
+                />
+                <p id="overflow" class="hidden">Overflow</p>
+              </div>
+        </div>
+        <div class="options-container">
+            <fieldset class="modo button-group">
+                <legend>Modo de trabajo</legend>
+                <input  id="register" class="button" type="radio" name="modo-options" value="register" />
+                <label for="register">registro</label>
+                <input checked id="ALU" class="button" type="radio" name="modo-options" value="ALU" />
+                <label for="ALU">ALU</label>
+            </fieldset>
+            <fieldset id="bit-size" class="bit-size button-group">
+                <legend>Tamaño de los números</legend>
+                <input checked id="bit8" class="button" type="radio" name="bit-options" value="8" />
+                <label for="bit8">8-bits</label>
+                <input id="bit16" class="button" type="radio" name="bit-options" value="16" />
+                <label for="bit16">16-bits</label>
+            </fieldset>
+        </div>                
+        <div class="calculator-container">
+            <div class="input-visual">
+                <input
+                  disabled
+                  id="visual"
+                  type="text"
+                  class="textview"
+                  name="textview"
+                />
+              </div>               
+        <input class="button" type="button" value="0" onclick="insert(0)" />
+        <input class="button" type="button" value="1" onclick="insert(1)" />
+        <input
+        class="button"
+        type="button"
+        value="⌫"
+        onclick="backspace()"
+        />
+        <input class="button" type="button" value="C" onclick="clc()" />
+        <input
+        class="button"
+        type="button"
+        value="+"
+        onclick="insert('+')"
+      />
+        <input
+        class="button"
+        type="button"
+        value="-"
+        onclick="insert('-')"
+      />
+      <input
+        class="button"
+        type="button"
+        value="*"
+        onclick="insert('*')"
+      />
+      <input
+        class="button"
+        type="button"
+        value="/"
+        onclick="insert('/')"
+      />
+    <input
+              class="button"
+              type="button"
+              value="2's"
+              onclick="twoComplement()"
+    />
+    <input
+            class="button"
+              type="button"
+              value=">"
+              onclick="shift('>')"
+    />
+    <input
+              class="button"
+              type="button"
+              value="<"
+              onclick="shift('<')"
+    />
+    <input
+              id="eql"
+              class="button"
+              type="button"
+              value="="
+              onclick="eql()"
+    />
     </div>
     <script src="js/binaryCalculator.js"></script>
-</body>
-
+  </body>
 </html>

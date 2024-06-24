@@ -1,0 +1,115 @@
+* {
+  text-shadow: 0 0 2px rgb(0, 100, 0);
+}
+
+.decorative-text {
+  position: absolute;
+  right: 40px;
+  bottom: 30px;
+  font-size: 1em;
+  opacity: 0.9;
+}
+
+body {
+  user-select: none;
+  overflow: hidden; /* Hide overflow for perspective effect */
+}
+
+.main {
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
+}
+
+.bg {
+  background-color: black;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+}
+
+.overlay {
+  background-color: rgb(0, 100, 0);
+  background-image: radial-gradient(black, rgba(0, 150, 0, 0.75) 500%);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  opacity: 0.8;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 130vh;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 30, 0, 0.2),
+    rgba(0, 30, 0, 0.2) var(--thickness, 1px),
+    transparent calc(var(--thickness, 1px) + 20px),
+    transparent calc(var(--thickness, 1px) + 10px)
+  );
+  animation: flicker 5s infinite, moveDown 10s infinite linear,
+    changeThickness 7s infinite alternate;
+}
+
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  22%,
+  24%,
+  55% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px); /* Adjust movement distance */
+  }
+  51% {
+    transform: translateY(-30px); /* Adjust movement distance */
+  }
+  52% {
+    transform: translateY(-40px); /* Adjust movement distance */
+  }
+  53% {
+    transform: translateY(-30px); /* Adjust movement distance */
+  }
+  100% {
+    transform: translateY(-100px); /* Adjust movement distance */
+  }
+}
+
+@keyframes changeThickness {
+  0%,
+  100% {
+    --thickness: 1px; /* Initial thickness */
+  }
+  50% {
+    --thickness: 10px; /* Maximum thickness */
+  }
+  53% {
+    --thickness: 1px; /* Maximum thickness */
+  }
+}
