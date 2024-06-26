@@ -1,5 +1,5 @@
 * {
-  text-shadow: 0 0 2px rgb(0, 100, 0);
+  position: relative;
 }
 
 .decorative-text {
@@ -17,12 +17,14 @@ body {
   width: 100%;
   overflow: hidden;
 }
+
 /* 
 transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
- */
 .main {
-  filter: blur(0.5px) drop-shadow(0 0 2px rgb(9, 105, 9));
+  filter: blur(0.2px) drop-shadow(0 0 1spx rgb(9, 105, 9));
 }
+ */
+
 .bg {
   background-color: black;
   position: absolute;
@@ -48,13 +50,15 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
   filter: contrast(170%) brightness(10%);
 }
 
-.overlay::before {
-  content: "";
+.stripes {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 130vh;
+  z-index: 100;
+  mix-blend-mode: difference;
+  opacity: 0.5;
   background: repeating-linear-gradient(
     0deg,
     rgba(0, 30, 0, 0.2),
@@ -135,14 +139,25 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
   align-items: center;
 }
 
-.displays .display::after {
+.main:has(.bit-size.button-group #bit24:checked) .displays .display::after {
   content: "";
   position: absolute;
   right: 10px;
-  width: 21%;
+  width: 19%;
   height: 70%;
   mix-blend-mode: difference;
-  animation: blinking 2s infinite ease-in-out;
   background-color: rgb(4, 223, 4);
+  border-radius: 0 3px 3px 0;
+}
+
+.main:has(.button-group #NORM:checked) .displays .input-display::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 60%;
+  height: 70%;
+  opacity: 0.7;
+  mix-blend-mode: darken;
+  background-color: rgb(0, 0, 0);
   border-radius: 0 3px 3px 0;
 }

@@ -27,7 +27,18 @@
 }
 
 .displays input {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
+}
+
+.displays .exponent-display {
+  width: 20%;
+  margin-left: auto;
+}
+
+.displays .exponent-display .textview {
+  border-radius: 0;
+  background-color: #41ff00;
+  color: black;
 }
 
 .interface {
@@ -81,30 +92,6 @@
   grid-row: 1;
 }
 
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  25%,
-  75% {
-    opacity: 0.2;
-  }
-}
-
-.result-container #overflow {
-  position: absolute;
-  right: 0;
-  padding: 5px 10px;
-  color: black;
-  background-color: lime;
-  animation: blink 5s infinite;
-}
-
-.result-container #overflow.hidden {
-  display: none;
-}
-
 .calculator-container {
   width: auto;
   grid-column: 2;
@@ -114,16 +101,9 @@
   box-sizing: border-box;
   justify-self: self-end;
   padding: 10px;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.calculator-container .input-visual {
-  grid-column: 1 / 5;
-  margin-bottom: 30px;
-  grid-row: 1;
-  display: grid;
-  place-items: center;
+  gap: 10px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .textview {
@@ -175,10 +155,14 @@
   color: black;
 }
 
+/* ========================================================== */
+/* REGISTER MODE */
+/* ========================================================== */
+
 .button.fullscreen-button {
   position: absolute !important;
-  right: 40px;
-  top: 30px;
+  right: 15px;
+  top: 15px;
   height: 60px;
   width: 60px;
   padding: 10px;
@@ -187,34 +171,57 @@
 
 .button.fullscreen-button:hover {
   background-color: black;
-  color: lime;
+  color: #41ff00;
 }
 
 /* ========================================================== */
-/* REGISTER MODE */
+/* OTHER MODES */
 /* ========================================================== */
 
 .main:has(.modo.button-group #register:checked)
   .calculator-container
-  .button:nth-of-type(n + 5) {
+  .button:not(:is(.basic, .register)) {
   display: none;
   pointer-events: none;
 }
 
-.main:has(.modo.button-group #register:checked) > .result-container {
+.main:has(.modo.button-group #NORM:checked)
+  .calculator-container
+  .button:not(:is(.basic, .norm)) {
   display: none;
+  pointer-events: none;
 }
 
+.main:has(.modo.button-group #ALU:checked)
+  .calculator-container
+  .button:not(:is(.basic, .alu)) {
+  display: none;
+  pointer-events: none;
+}
+
+.main:has(.modo.button-group #NORM:not(:checked))
+  .calculator-container
+  .button:last-child {
+  display: none;
+  pointer-events: none;
+}
+
+.main:has(.modo.button-group #NORM:checked) #id {
+  display: block;
+  pointer-events: all;
+}
+
+.main:has(.modo.button-group #NORM:checked) .calculator-container,
 .main:has(.modo.button-group #register:checked) .calculator-container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 20px;
   width: auto;
 }
 
 .main:has(.modo.button-group #register:checked) .calculator-container .button {
   display: inline-flex;
-  font-size: 4rem;
 }
 
 .main:has(.modo.button-group #register:checked) .textview {
@@ -222,6 +229,11 @@
   height: auto;
 }
 
+.main:has(.modo.button-group #NORM:not(:checked)) .exponent-display .textview {
+  display: none;
+}
+
+.main:has(.modo.button-group #NORM:checked) .textview#res,
 .main:has(.modo.button-group #register:checked) .textview#res {
   display: none;
 }

@@ -1,7 +1,7 @@
 let operations = "";
 const res = document.getElementById("res");
 const visual = document.getElementById("visual");
-const overflowIndicator = document.getElementById("overflow");
+const exponentNormalization = document.getElementById("exponent");
 const fullscreenButton = document.getElementById("fullscreen-button");
 
 let bitLength = 16;
@@ -40,19 +40,38 @@ function backspace() {
 }
 
 function shift(input) {
+  const number = removeSpacing(visual.value);
+  let mantissa = number.slice(0, -8);
+  let exponent = number.slice(-8);
   if (input === "<") {
-    insert("<1");
-    eql();
-    return;
+    mantissa = parseInt(mantissa, 2) * 2;
+    exponent = parseInt(exponent, 2) - 1;
+  } else {
+    mantissa = parseInt(mantissa, 2) >> 1;
+    exponent = parseInt(exponent, 2) + 1;
   }
-  insert(">1");
-  eql();
+  mantissa = mantissa.toString(2).slice(-16).padStart(16, "0");
+  exponent = exponent.toString(2).slice(-8).padStart(8, "0");
+  visual.value = addSpacing(mantissa.concat(exponent));
+  return;
+}
+
+function normalizeNumber() {
+  let mantissa = removeSpacing(visual.value);
+  let exponent = removeSpacing(exponentNormalization.value.padStart(8, "0"));
+  mantissa = parseInt(mantissa, 2) >> 1;
+  exponent = parseInt(exponent, 2) + 1;
+  mantissa = mantissa.toString(2).slice(-32).padStart(32, "0");
+  exponent = exponent.toString(2).slice(-8).padStart(8, "0");
+  visual.value = addSpacing(mantissa);
+  exponentNormalization.value = addSpacing(exponent);
   return;
 }
 
 function clc() {
   visual.value = "";
   res.value = "";
+  exponent.value = "";
   operations = "";
 }
 
@@ -82,7 +101,9 @@ function eql() {
     .filter((part) => part.trim() !== "");
 
   if (parts.length !== 3) {
-    operations = "Invalid Input";
+    res.value = addSpacing(
+      padLeftWithZeros(decimalToBinary(parts[0]), bitLength)
+    );
     return;
   }
 
@@ -222,12 +243,9 @@ document.addEventListener("keydown", (event) => {
     insert("/");
   } else if (event.code == "NumpadMultiply" || event.key == "*") {
     insert("*");
-  } else if (
-    event.code == "KeyC" ||
-    event.key == "c" ||
-    event.code == "Backspace" ||
-    event.key == "Backspace"
-  ) {
+  } else if (event.code == "Backspace" || event.key == "Backspace") {
+    backspace();
+  } else if (event.code == "KeyC" || event.key == "c") {
     clc();
   } else if (event.code === "KeyM" || event.key === "m") {
     addToMemory();

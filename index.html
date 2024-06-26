@@ -51,6 +51,15 @@
                   name="textview"
                 />
               </div>
+              <div class="display exponent-display">
+                <input
+                  disabled
+                  id="exponent"
+                  type="text"
+                  class="textview"
+                  name="textview"
+                />
+              </div>
         </div>
         <div class="interface">
         <div class="options-container">
@@ -60,7 +69,7 @@
                 <label for="register">registro</label>
                 <input checked id="ALU" class="button" type="radio" name="modo-options" value="ALU" />
                 <label for="ALU">ALU</label>
-                <input checked id="NORM" class="button" type="radio" name="modo-options" value="NORM" />
+                <input id="NORM" class="button" type="radio" name="modo-options" value="NORM" />
                 <label for="NORM">NORM</label>
             </fieldset>
             <fieldset id="bit-size" class="bit-size button-group">
@@ -74,63 +83,70 @@
             </fieldset>
         </div>                
         <div class="calculator-container">               
-            <input class="button" type="button" value="0" onclick="insert(0)" />
-            <input class="button" type="button" value="1" onclick="insert(1)" />
+            <input class="button basic" type="button" value="0" onclick="insert(0)" />
+            <input class="button basic" type="button" value="1" onclick="insert(1)" />
             <input
-            class="button"
+            class="button basic"
             type="button"
             value="⌫"
             onclick="backspace()"
             />
-            <input class="button" type="button" value="C" onclick="clc()" />
+            <input class="button basic" type="button" value="C" onclick="clc()" />
             <input
-            class="button"
+            class="button alu"
             type="button"
             value="+"
             onclick="insert('+')"
           />
             <input
-            class="button"
+            class="button alu"
             type="button"
             value="-"
             onclick="insert('-')"
           />
           <input
-            class="button"
+            class="button alu"
             type="button"
             value="*"
             onclick="insert('*')"
           />
           <input
-            class="button"
+            class="button alu"
             type="button"
             value="/"
             onclick="insert('/')"
           />
         <input
-                  class="button"
+                  class="button alu"
                   type="button"
                   value="2's"
                   onclick="twoComplement()"
         />
         <input
-                class="button"
+                class="button register"
                   type="button"
                   value=">"
                   onclick="shift('>')"
         />
         <input
-                  class="button"
+                  class="button register"
                   type="button"
                   value="<"
                   onclick="shift('<')"
         />
         <input
                   id="eql"
-                  class="button"
+                  class="button alu"
                   type="button"
                   value="="
                   onclick="eql()"
+        />
+        <input
+                  id="norm"
+                  class="button norm"
+                  type="button"
+                  value=">e+1"
+                  onclick="normalizeNumber()"
         />
     </div>
     </div>
