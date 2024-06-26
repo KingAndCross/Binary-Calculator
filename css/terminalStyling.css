@@ -68,6 +68,7 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
   );
   animation: flicker 5s infinite, moveDown 10s infinite linear,
     changeThickness 7s infinite alternate;
+  pointer-events: none;
 }
 
 @keyframes flicker {
