@@ -42,6 +42,7 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
   right: 0px;
   bottom: 0px;
   z-index: 1;
+  opacity: 0.4;
   pointer-events: none;
   mix-blend-mode: exclusion;
   filter: contrast(170%) brightness(10%);
@@ -124,7 +125,7 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
     opacity: 1;
   }
   50% {
-    opacity: 0.9;
+    opacity: 0.8;
   }
 }
 
@@ -143,4 +144,5 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -0.0001, 0, 0, 1, 0, 0, 0, 0, 1);
   mix-blend-mode: difference;
   animation: blinking 2s infinite ease-in-out;
   background-color: rgb(4, 223, 4);
+  border-radius: 0 3px 3px 0;
 }
