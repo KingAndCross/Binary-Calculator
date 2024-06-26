@@ -10,7 +10,18 @@
   </head>
 
   <body>
-    <div class="overlay"></div>
+    <div class="overlay">
+      <svg viewBox="0 0 200 200" xmlns='http://www.w3.org/2000/svg'>
+        <filter id='noiseFilter'>
+          <feTurbulence 
+            type='fractalNoise' 
+            baseFrequency='10' 
+            numOctaves='10' 
+            stitchTiles='stitch' />
+        </filter>   
+        <rect width='100%' height='100%' filter='url(#noiseFilter)' />
+      </svg>
+    </div>
     <div class="bg"></div>
     <p class="decorative-text">Algoritmos UOH v.2.02.4...*/ </p>
     <div class="main">
@@ -21,36 +32,17 @@
                 </g>
                 </svg>
         </button>
-        <div class="result-container">
-            <div class="input-container">
+        <div class="displays">
+              <div class="display result-display">
                 <input
                   disabled
                   id="res"
                   type="text"
-                  class="textview"
+                  class=" textview"
                   name="textview"
                 />
-                <p id="overflow" class="hidden">Overflow</p>
               </div>
-        </div>
-        <div class="options-container">
-            <fieldset class="modo button-group">
-                <legend>Modo de trabajo</legend>
-                <input  id="register" class="button" type="radio" name="modo-options" value="register" />
-                <label for="register">registro</label>
-                <input checked id="ALU" class="button" type="radio" name="modo-options" value="ALU" />
-                <label for="ALU">ALU</label>
-            </fieldset>
-            <fieldset id="bit-size" class="bit-size button-group">
-                <legend>Tamaño de los números</legend>
-                <input checked id="bit8" class="button" type="radio" name="bit-options" value="8" />
-                <label for="bit8">8-bits</label>
-                <input id="bit16" class="button" type="radio" name="bit-options" value="16" />
-                <label for="bit16">16-bits</label>
-            </fieldset>
-        </div>                
-        <div class="calculator-container">
-            <div class="input-visual">
+              <div class="display input-display">
                 <input
                   disabled
                   id="visual"
@@ -58,65 +50,89 @@
                   class="textview"
                   name="textview"
                 />
-              </div>               
-        <input class="button" type="button" value="0" onclick="insert(0)" />
-        <input class="button" type="button" value="1" onclick="insert(1)" />
-        <input
-        class="button"
-        type="button"
-        value="⌫"
-        onclick="backspace()"
-        />
-        <input class="button" type="button" value="C" onclick="clc()" />
-        <input
-        class="button"
-        type="button"
-        value="+"
-        onclick="insert('+')"
-      />
-        <input
-        class="button"
-        type="button"
-        value="-"
-        onclick="insert('-')"
-      />
-      <input
-        class="button"
-        type="button"
-        value="*"
-        onclick="insert('*')"
-      />
-      <input
-        class="button"
-        type="button"
-        value="/"
-        onclick="insert('/')"
-      />
-    <input
-              class="button"
-              type="button"
-              value="2's"
-              onclick="twoComplement()"
-    />
-    <input
+              </div>
+        </div>
+        <div class="interface">
+        <div class="options-container">
+            <fieldset class="modo button-group">
+                <legend>Modo de trabajo</legend>
+                <input  id="register" class="button" type="radio" name="modo-options" value="register" />
+                <label for="register">registro</label>
+                <input checked id="ALU" class="button" type="radio" name="modo-options" value="ALU" />
+                <label for="ALU">ALU</label>
+                <input checked id="NORM" class="button" type="radio" name="modo-options" value="NORM" />
+                <label for="NORM">NORM</label>
+            </fieldset>
+            <fieldset id="bit-size" class="bit-size button-group">
+                <legend>Tamaño de los números</legend>
+                <input checked id="bit16" class="button" type="radio" name="bit-options" value="16" />
+                <label for="bit16">16-bits</label>
+                <input id="bit24" class="button" type="radio" name="bit-options" value="24" />
+                <label for="bit24">24-bits</label>
+                <input id="bit32" class="button" type="radio" name="bit-options" value="32" />
+                <label for="bit32">32-bits</label>
+            </fieldset>
+        </div>                
+        <div class="calculator-container">               
+            <input class="button" type="button" value="0" onclick="insert(0)" />
+            <input class="button" type="button" value="1" onclick="insert(1)" />
+            <input
             class="button"
-              type="button"
-              value=">"
-              onclick="shift('>')"
-    />
-    <input
-              class="button"
-              type="button"
-              value="<"
-              onclick="shift('<')"
-    />
-    <input
-              id="eql"
-              class="button"
-              type="button"
-              value="="
-              onclick="eql()"
-    />
+            type="button"
+            value="⌫"
+            onclick="backspace()"
+            />
+            <input class="button" type="button" value="C" onclick="clc()" />
+            <input
+            class="button"
+            type="button"
+            value="+"
+            onclick="insert('+')"
+          />
+            <input
+            class="button"
+            type="button"
+            value="-"
+            onclick="insert('-')"
+          />
+          <input
+            class="button"
+            type="button"
+            value="*"
+            onclick="insert('*')"
+          />
+          <input
+            class="button"
+            type="button"
+            value="/"
+            onclick="insert('/')"
+          />
+        <input
+                  class="button"
+                  type="button"
+                  value="2's"
+                  onclick="twoComplement()"
+        />
+        <input
+                class="button"
+                  type="button"
+                  value=">"
+                  onclick="shift('>')"
+        />
+        <input
+                  class="button"
+                  type="button"
+                  value="<"
+                  onclick="shift('<')"
+        />
+        <input
+                  id="eql"
+                  class="button"
+                  type="button"
+                  value="="
+                  onclick="eql()"
+        />
+    </div>
     </div>
     <script src="js/binaryCalculator.js"></script>
   </body>

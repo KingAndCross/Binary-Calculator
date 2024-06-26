@@ -4,7 +4,7 @@ const visual = document.getElementById("visual");
 const overflowIndicator = document.getElementById("overflow");
 const fullscreenButton = document.getElementById("fullscreen-button");
 
-let bitLength = 8;
+let bitLength = 16;
 
 fullscreenButton.addEventListener("click", toggleFullscreen);
 
@@ -54,11 +54,9 @@ function clc() {
   visual.value = "";
   res.value = "";
   operations = "";
-  overflowIndicator.classList.add("hidden");
 }
 
 function insert(char) {
-  overflowIndicator.classList.add("hidden");
   let currValue = cleanZeros(removeSpacing(visual.value));
   if ([0, 1].includes(char)) {
     if (currValue.length < bitLength) {
@@ -134,7 +132,6 @@ function eql() {
   }
 
   while (resultValue > 2 ** bitLength - 1) {
-    overflowIndicator.classList.remove("hidden");
     resultValue = resultValue - 2 ** bitLength;
   }
   res.value = addSpacing(
