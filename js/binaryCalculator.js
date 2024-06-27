@@ -6,6 +6,19 @@ const fullscreenButton = document.getElementById("fullscreen-button");
 
 let bitLength = 16;
 
+function changeNumber(input) {
+  let number = removeSpacing(visual.value);
+  number = parseInt(number, 2);
+  if (input === "+1") {
+    number += 1;
+  } else if (number > 0) {
+    number -= 1;
+  }
+  number = number.toString(2).slice(-16).padStart(16, "0");
+  visual.value = addSpacing(number);
+  return;
+}
+
 fullscreenButton.addEventListener("click", toggleFullscreen);
 
 function toggleFullscreen() {

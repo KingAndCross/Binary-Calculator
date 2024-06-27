@@ -63,12 +63,12 @@
               </div>
         </div>
         <div class="interface">
-        <div class="options-container">
+        <div style="opacity: 0; pointer-events: none;" class="options-container">
             <fieldset class="modo button-group">
                 <legend>Modo de trabajo</legend>
-                <input  id="register" class="button" type="radio" name="modo-options" value="register" />
+                <input checked id="register" class="button" type="radio" name="modo-options" value="register" />
                 <label for="register">registro</label>
-                <input checked id="ALU" class="button" type="radio" name="modo-options" value="ALU" />
+                <input  id="ALU" class="button" type="radio" name="modo-options" value="ALU" />
                 <label for="ALU">ALU</label>
                 <input id="NORM" class="button" type="radio" name="modo-options" value="NORM" />
                 <label for="NORM">NORM</label>
@@ -126,14 +126,14 @@
         <input
                 class="button register"
                   type="button"
-                  value=">"
-                  onclick="shift('>')"
+                  value="-1"
+                  onclick="changeNumber('-1')"
         />
         <input
                   class="button register"
                   type="button"
-                  value="<"
-                  onclick="shift('<')"
+                  value="+1"
+                  onclick="changeNumber('+1')"
         />
         <input
                   id="eql"
